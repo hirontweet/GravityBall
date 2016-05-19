@@ -55,4 +55,12 @@ public class Circle {
         mTargetCanvasHeight = ((GravityBallView)context).getHeight();
         mTargetCanvasWidth = ((GravityBallView)context).getWidth();
     }
+
+    public float getX(){
+        return mPoint_X;
+    }
+
+    public float getY(){
+        return mPoint_Y;
+    }
 }

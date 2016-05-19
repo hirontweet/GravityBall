@@ -52,4 +52,16 @@ public class AimField {
 
         mRadius_Outer = ((GravityBallView)view).getWidth() / 8;
     }
+
+    public float getRadius(){
+        return mRadius_Outer;
+    }
+
+    public float getX(){
+        return mPoint_X;
+    }
+
+    public float getY(){
+        return mPoint_Y;
+    }
 }
