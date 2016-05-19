@@ -16,6 +16,7 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
     private Paint paint_Background = new Paint();
 
     private Circle circle100, circle200, circle300;
+    private AimField aimField;
 
     private float canvasWidth, canvasHeight;
 
@@ -43,6 +44,11 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
             circle300.setListener(this);
         }
 
+        if(aimField == null){
+            aimField = new AimField(getCanvasWidth() / 2, getCanvasHeight() / 2);
+            aimField.setListener(this);
+        }
+
         circle100.move(0, 10);
         circle200.move(0, 10);
         circle300.move(0, 10);
@@ -51,6 +57,8 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         circle100.draw(canvas);
         circle200.draw(canvas);
         circle300.draw(canvas);
+
+        aimField.draw(canvas);
 
         determineInScreen();
     }
