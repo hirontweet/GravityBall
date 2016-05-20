@@ -54,10 +54,9 @@ public class Circle {
     }
 
     public boolean isInScreen(){
-        if((mPoint_X - mRadius > mTargetCanvasWidth) || (mPoint_Y - mRadius > mTargetCanvasHeight) || (mPoint_X + mRadius < 0) || (mPoint_Y + mRadius < 0)){
-            return false;
-        }
-        return true;
+
+        return (mPoint_X - mRadius > mTargetCanvasWidth) || (mPoint_Y - mRadius > mTargetCanvasHeight) || (mPoint_X + mRadius < 0) || (mPoint_Y + mRadius < 0);
+
     }
 
     public void setListener(View context){
