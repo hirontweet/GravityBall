@@ -17,7 +17,7 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
     private DrawThread drawThread;
     private Paint paint_Background = new Paint();
 
-    private Circle circle100, circle200, circle300;
+    private Circle circle100;
     private AimField aimField;
 
     private float canvasWidth, canvasHeight;
@@ -46,39 +46,21 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
 
     public void drawView(Canvas canvas){
 
+        // Draw background in Rectangle to fill screen.
+        canvas.drawRect(0, 0, getCanvasWidth(), getCanvasHeight(), paint_Background);
+
         if(circle100 == null){
             circle100 = new Circle(getCanvasWidth() / 2, 0);
             circle100.setListener(this);
         }else{
             circle100.move();
-        }
-
-        if(circle200 == null){
-            circle200 = new Circle(getCanvasWidth() / 2, 300);
-            circle200.setListener(this);
-        }
-
-        if(circle300 == null){
-            circle300 = new Circle(getCanvasWidth() / 2, 600);
-            circle300.setListener(this);
+            circle100.draw(canvas);
         }
 
         if(aimField == null){
             aimField = new AimField(getCanvasWidth() / 2, getCanvasHeight() / 2);
             aimField.setListener(this);
         }
-
-
-//        circle100.move(0, 10);
-//        circle200.move(0, 10);
-//        circle300.move(0, 10);
-
-        canvas.drawRect(0, 0, getCanvasWidth(), getCanvasHeight(), paint_Background);
-        if(circle100 != null) {
-            circle100.draw(canvas);
-        }
-//        circle200.draw(canvas);
-//        circle300.draw(canvas);
 
         aimField.draw(canvas);
 
@@ -129,13 +111,6 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         if(circle100 != null && !circle100.isInScreen()){
             circle100 = null;
         }
-        if(!circle200.isInScreen()){
-            circle200 = null;
-        }
-
-        if(!circle300.isInScreen()){
-            circle300 = null;
-        }
     }
 
     public void shootDown(){
@@ -151,32 +126,6 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
                             aimY - aimRadius <= circle100.getY() &&
                                 circle100.getY() <= aimY + aimRadius) {
                     circle100 = null;
-                }
-            } catch (NullPointerException e) {
-
-            }
-        }
-
-        if (circle200.isInScreen()) {
-            try {
-                if (aimX - aimRadius <= circle200.getX() &&
-                        circle200.getX() <= aimX + aimRadius &&
-                        aimY - aimRadius <= circle200.getY() &&
-                        circle200.getY() <= aimY + aimRadius) {
-                    circle200 = null;
-                }
-            } catch (NullPointerException e) {
-
-            }
-        }
-
-        if (circle300.isInScreen()) {
-            try {
-                if (aimX - aimRadius <= circle300.getX() &&
-                        circle300.getX() <= aimX + aimRadius &&
-                        aimY - aimRadius <= circle300.getY() &&
-                        circle300.getY() <= aimY + aimRadius) {
-                    circle300 = null;
                 }
             } catch (NullPointerException e) {
 
