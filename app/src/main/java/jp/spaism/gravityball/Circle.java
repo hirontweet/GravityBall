@@ -18,7 +18,8 @@ public class Circle {
     private float mRadius;
 
     private double mTime = 0.0;
-    static float mGravity = 9.81f;
+    static float GRAVITY = 9.81f;
+    static float TIMERATIO = 0.25f;
 
     private float mTargetCanvasHeight;
     private float mTargetCanvasWidth;
@@ -48,8 +49,8 @@ public class Circle {
     }
 
     public void move(){
-        mTime += 0.5;
-        mPoint_Y = ((float)(mTime * mTime) * mGravity) / 2;
+        mTime += TIMERATIO;
+        mPoint_Y = ((float)(mTime * mTime) * GRAVITY) / 2;
     }
 
     public boolean isInScreen(){
