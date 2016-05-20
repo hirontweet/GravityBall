@@ -49,6 +49,8 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         if(circle100 == null){
             circle100 = new Circle(getCanvasWidth() / 2, 0);
             circle100.setListener(this);
+        }else{
+            circle100.move();
         }
 
         if(circle200 == null){
@@ -66,13 +68,15 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
             aimField.setListener(this);
         }
 
-        circle100.move();
+
 //        circle100.move(0, 10);
 //        circle200.move(0, 10);
 //        circle300.move(0, 10);
 
         canvas.drawRect(0, 0, getCanvasWidth(), getCanvasHeight(), paint_Background);
-        circle100.draw(canvas);
+        if(circle100 != null) {
+            circle100.draw(canvas);
+        }
 //        circle200.draw(canvas);
 //        circle300.draw(canvas);
 
@@ -122,7 +126,7 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public void determineInScreen(){
-        if(!circle100.isInScreen()){
+        if(circle100 != null && !circle100.isInScreen()){
             circle100 = null;
         }
         if(!circle200.isInScreen()){
@@ -139,7 +143,7 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         float aimX = aimField.getX();
         float aimY = aimField.getY();
 
-        if (circle100.isInScreen()) {
+        if (circle100 != null && circle100.isInScreen()) {
             // Try catching the exception of NullPointerException because the ball might be out of the screen.
             try {
                 if (aimX - aimRadius <= circle100.getX() &&
