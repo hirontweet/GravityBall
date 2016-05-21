@@ -119,16 +119,11 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         float aimY = aimField.getY();
 
         if (circle100 != null && circle100.isInScreen()) {
-            // Try catching the exception of NullPointerException because the ball might be out of the screen.
-            try {
-                if (aimX - aimRadius <= circle100.getX() &&
-                        circle100.getX() <= aimX + aimRadius &&
-                            aimY - aimRadius <= circle100.getY() &&
-                                circle100.getY() <= aimY + aimRadius) {
-                    circle100 = null;
-                }
-            } catch (NullPointerException e) {
-
+            if (aimX - aimRadius <= circle100.getX() &&
+                    circle100.getX() <= aimX + aimRadius &&
+                    aimY - aimRadius <= circle100.getY() &&
+                    circle100.getY() <= aimY + aimRadius) {
+                circle100 = null;
             }
         }
     }
