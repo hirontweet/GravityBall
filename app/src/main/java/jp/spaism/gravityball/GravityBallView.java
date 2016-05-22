@@ -59,8 +59,9 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         }
 
         if(aimField == null){
-            aimField = new AimField(getCanvasWidth() / 2, getCanvasHeight() / 2);
-            aimField.setListener(this);
+//            aimField = new AimField(getCanvasWidth() / 2, getCanvasHeight() / 2);
+            aimField = new AimField(getCanvasWidth() / 2, getCanvasHeight() / 2, getCanvasWidth() / 8);
+//            aimField.setListener(this);
         }
 
         aimField.draw(canvas);

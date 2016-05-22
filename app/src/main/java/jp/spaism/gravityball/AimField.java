@@ -34,6 +34,11 @@ public class AimField {
 
     }
 
+    public AimField(float initX, float initY, float radius){
+        this(initX, initY);
+        mRadius_Outer = radius;
+    }
+
     public void draw(Canvas canvas){
 
         /*
