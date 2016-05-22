@@ -21,6 +21,8 @@ public class Circle {
     static float GRAVITY = 9.81f;
     static float TIMERATIO = 0.25f;
 
+    public static final int CIRCLE_INITIAL_SIZE = 50;
+
     private float mTargetCanvasHeight;
     private float mTargetCanvasWidth;
 
@@ -36,7 +38,14 @@ public class Circle {
         mPaint.setColor(Color.GREEN);
 
         Random rnd = new Random();
-        mRadius = rnd.nextInt(50) + 30;
+        mRadius = rnd.nextInt(CIRCLE_INITIAL_SIZE) + 30;
+    }
+
+    public Circle(float init_X, float init_Y, int radius){
+        this(init_X, init_Y);
+
+        Random rnd = new Random();
+        mRadius = rnd.nextInt(radius - 50) + 50;
     }
 
     public void draw(Canvas canvas){

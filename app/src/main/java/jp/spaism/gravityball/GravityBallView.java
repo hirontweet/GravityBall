@@ -50,7 +50,8 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
         canvas.drawRect(0, 0, getCanvasWidth(), getCanvasHeight(), paint_Background);
 
         if(circle100 == null){
-            circle100 = new Circle(getCanvasWidth() / 2, 0);
+//            circle100 = new Circle(getCanvasWidth() / 2, 0);
+            circle100 = new Circle(getCanvasWidth() / 2, 0, (int)(getCanvasWidth() / 8));
             circle100.setListener(this);
         }else{
             circle100.move();
