@@ -19,6 +19,10 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
 
     private Circle circle100;
     private AimField aimField;
+    private ScoreBoard scoreBoard;
+
+    private int mScore = 0;
+    private static final int REFERENCE_POINT = 100;
 
     private float canvasWidth, canvasHeight;
 
@@ -64,7 +68,12 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
 //            aimField.setListener(this);
         }
 
+        if(scoreBoard == null){
+            scoreBoard = new ScoreBoard();
+        }
+
         aimField.draw(canvas);
+        scoreBoard.draw(canvas);
 
         determineInScreen();
     }
@@ -125,12 +134,26 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
                     circle100.getX() <= aimX + aimRadius &&
                     aimY - aimRadius <= circle100.getY() &&
                     circle100.getY() <= aimY + aimRadius) {
+                setScore(circle100.getY());
                 circle100 = null;
             }
         }
     }
 
+    public void setScore(float circle_y){
+        float real_offset = (getHeight() / 2) - circle_y;
+        int rounded_offset = Math.round(real_offset);
 
+        if(rounded_offset > 0){
+            mScore += (int)(REFERENCE_POINT * (1 - (rounded_offset / aimField.getRadius())));
+        }else if(rounded_offset < 0){
+            mScore += (int)(REFERENCE_POINT * (1 - (Math.abs(rounded_offset) / aimField.getRadius())));
+        }else{
+            mScore += REFERENCE_POINT;
+        }
+        Log.v(getClass().toString() + ".setScore():", "SCORE:" + mScore);
+        scoreBoard.updateScore(mScore);
+    }
 
     private class DrawThread extends Thread{
         private boolean isFinished = false;
