@@ -19,6 +19,7 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
 
     private Circle circle100;
     private AimField aimField;
+    private ScoreBoard scoreBoard;
 
     private int mScore = 0;
     private static final int REFERENCE_POINT = 100;
@@ -65,7 +66,12 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
             aimField.setListener(this);
         }
 
+        if(scoreBoard == null){
+            scoreBoard = new ScoreBoard();
+        }
+
         aimField.draw(canvas);
+        scoreBoard.draw(canvas);
 
         determineInScreen();
     }
@@ -144,6 +150,7 @@ public class GravityBallView extends SurfaceView implements SurfaceHolder.Callba
             mScore += REFERENCE_POINT;
         }
         Log.v(getClass().toString() + ".setScore():", "SCORE:" + mScore);
+        scoreBoard.updateScore(mScore);
     }
 
     private class DrawThread extends Thread{
